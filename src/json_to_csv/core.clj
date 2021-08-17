@@ -19,6 +19,7 @@
         cols (-> rows first keys)]
     (write-csv out (cons cols (vectorize cols rows)))))
 
+
 (defn -main
   "Given an input json file and an output path return the csv file in that path"
   [& args]
