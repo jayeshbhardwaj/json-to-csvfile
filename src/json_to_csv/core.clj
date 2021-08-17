@@ -14,10 +14,15 @@
   (mapv #(mapv % cols) map))
 
 
-(defn -main
-  "I don't do a whole lot ... yet."
-  [& args]
-  (let [[inp out] args
-        rows (json/parse-string (slurp inp))
+(defn json-to-csv [inp out]
+  (let [rows (json/parse-string (slurp inp))
         cols (-> rows first keys)]
     (write-csv out (cons cols (vectorize cols rows)))))
+
+(defn -main
+  "Given an input json file and an output path return the csv file in that path"
+  [& args]
+  (if (< (count args) 2) (println "Usage: lein run <json_file> <output_csv_path>")
+      (let [[inp out] args]
+        (json-to-csv inp out)
+        (println (str "CSV file written at " out)))))
