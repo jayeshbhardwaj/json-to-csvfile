@@ -6,6 +6,7 @@
   :dependencies [[org.clojure/clojure "1.10.1"]
                  [clj-json "0.5.3"]
                  [org.clojure/data.csv "1.0.0"]]
+  :plugins [[lein-cloverage "1.2.2"]]
   :main ^:skip-aot json-to-csv.core
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all
