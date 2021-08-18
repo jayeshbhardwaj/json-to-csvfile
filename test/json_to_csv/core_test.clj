@@ -7,6 +7,9 @@
             [json-to-csv.core :as core]))
 
 (def jsn (json/parse-string "[{\"a\":1,\"b\":2}]"))
+(def filename "resources/inp.json")
+
+
 
 (t/deftest test-vectorize
   (t/is
@@ -46,6 +49,9 @@
             (core/write-csv io/writer csv/write-csv  "/tmp/abc.csv" [["a" "b"] [1 2]])))))
 
 
-(t/deftest integ-test-main
-  (t/is (= nil (core/-main "/tmp/inp.json" "/tmp/res.csv"))
+(t/with-test
+  (defn writejson []
+    (with-open [w (io/writer filename :append true)]
+      (.write w jsn)))
+  (t/is (= nil (core/-main filename "/tmp/res.csv"))
       (= nil (core/-main ""))))
