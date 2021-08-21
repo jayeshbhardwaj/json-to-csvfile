@@ -18,4 +18,8 @@ jobs:
     - name: Run tests
       run: lein test
     - name: Coverage
-      run: lein cloverage --coveralls
+      run: lein cloverage --codecov
+    - name: Codecov
+      uses: codecov/codecov-action@v2.0.2
+      
+
