@@ -25,5 +25,5 @@ jobs:
         CLOJARS_PASS: ${{ secrets.CLOJAR_PASS }}
       run: |
         echo "Hello"
-        echo $CLOJARS_USER
+        echo "$CLOJARS_USER"
         
