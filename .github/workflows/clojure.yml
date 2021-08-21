@@ -8,6 +8,7 @@ on:
 
 jobs:
   build:
+    environment: json-to-csv-env
 
     runs-on: ubuntu-latest
 
