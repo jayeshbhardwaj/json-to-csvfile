@@ -19,3 +19,5 @@ jobs:
       run: lein test
     - name: Coverage
       run: lein cloverage --coveralls
+    - name: Clojars
+      run: lein deploy clojars
