@@ -28,21 +28,22 @@
 
 (t/deftest test-json-to-csv
   (t/is
-   (= (core/json-to-csv  "[{\"a\":1,\"b\":2}]"  "" mockWriter) [["a" "b"] [1 2]])
+   (= (core/json-parse-csv  "[{\"a\":1,\"b\":2}]"  "" mockWriter) [["a" "b"] [1 2]])
    "Valid json string returns rows")
   (t/is
-   (= (first (core/json-to-csv "[{\"a\":1}]"  "" mockWriter)) ["a"])
+   (= (first (core/json-parse-csv "[{\"a\":1}]"  "" mockWriter)) ["a"])
    "Valid json strings should return columns")
   (t/is
-   (thrown? Exception (core/json-to-csv "[" "" mockWriter))
+   (thrown? Exception (core/json-parse-csv "[" "" mockWriter))
    "Invalid json string throws ex" )
   (t/is
-   (= (core/json-to-csv "{}" "" mockWriter) [nil])
+   (= (core/json-parse-csv "{}" "" mockWriter) [nil])
    "Empty json object should return nil")
   (t/is
-   (= (core/json-to-csv "" "" mockWriter) [nil])
+   (= (core/json-parse-csv "" "" mockWriter) [nil])
    "Empty string should return nil" ))
 
+;; Integration tests
 (t/deftest test-write-csv
   (with-redefs [csv/write-csv (fn [_ data] data)]
     (t/is (=  [["a" "b"] [1 2]]

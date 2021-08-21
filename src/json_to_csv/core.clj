@@ -15,18 +15,21 @@
   (mapv #(mapv % cols) map))
 
 
-(defn json-to-csv [json out writer]
+(defn json-parse-csv [json out writer]
   (let [rows (try (json/parse-string json)
                   (catch Exception e (throw e)))
         cols (-> rows first keys)]
     (writer out (cons cols (vectorize cols rows)))))
 
 
+(defn from-json-to-csv [json-file csv-file]
+  (json-parse-csv (slurp json-file)
+               csv-file (partial write-csv io/writer csv/write-csv)))
+
 (defn -main
   "Given an input json file and an output path return the csv file in that path"
   [& args]
   (if (< (count args) 2) (println "Usage: lein run <json_file> <output_csv_path>")
-      (let [[inp out] args
-            writer (partial write-csv io/writer csv/write-csv)]
-        (json-to-csv (slurp inp) out writer)
+      (let [[inp out] args]
+        (from-json-to-csv inp out)
         (println (str "CSV file written at " out)))))
