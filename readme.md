@@ -1,5 +1,7 @@
 # Clojure library for JSON to CSV parsing!
 
+[![Clojure CI](https://github.com/jayeshbhardwaj/json-to-csvfile/actions/workflows/clojure.yml/badge.svg?branch=master)](https://github.com/jayeshbhardwaj/json-to-csvfile/actions/workflows/clojure.yml)
+
 ## Usage
 You will first need to add the library as dependencies in your `project.clj` file.
 
