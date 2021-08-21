@@ -23,7 +23,7 @@ jobs:
       env: 
         CLOJARS_USER: ${{ secrets.CLOJAR_USERNAME }}
         CLOJARS_PASS: ${{ secrets.CLOJAR_PASS }}
-      run: 
+      run: |
         echo "Hello"
         echo $CLOJARS_USER
         
